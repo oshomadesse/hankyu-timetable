@@ -207,7 +207,7 @@ function checkTrains() {
             top: document.body.scrollHeight,
             behavior: 'smooth'
         });
-    }, 95);
+    }, 90);
 }
 
 // 結果表示

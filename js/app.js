@@ -73,6 +73,11 @@ function hidePasswordOverlay() {
     const overlay = document.getElementById('passwordOverlay');
     if (overlay) {
         overlay.style.display = 'none';
+        // 認証後、最上部にスクロール
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 }
 

@@ -56,6 +56,7 @@ h1 {
     color: #666;
     margin-bottom: 30px;
     font-size: 14px;
+    font-weight: bold;
 }
 
 @media (max-width: 480px) {
@@ -113,7 +114,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-.time-label,.subtitle {
+.time-label {
     display: block;
     text-align: center;
     font-size: 14px;

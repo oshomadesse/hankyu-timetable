@@ -1,6 +1,5 @@
 // ===== パスワード認証システム =====
-// TODO: Cloudflare WorkersのAPIエンドポイントURLをここに設定してください
-const API_URL = 'YOUR_CLOUDFLARE_WORKERS_API_URL_HERE';
+const API_URL = 'https://train-timetable.oshomadesse.workers.dev';
 
 // 認証状態をチェック
 function checkAuthStatus() {

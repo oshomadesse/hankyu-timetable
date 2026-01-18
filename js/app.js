@@ -29,7 +29,7 @@ async function loadTimetable() {
             .flat()
             .sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time));
 
-        // umeda_to_juso のデータ（を読み込み（3路線分を並列で取得）
+        // umeda_to_juso のデータを読み込み（3路線分を並列で取得）
         const umedaTojusoPromises = lines.map(line =>
             fetch(`./data/umeda_to_juso/${line}_${type}.json`)
                 .then(res => {

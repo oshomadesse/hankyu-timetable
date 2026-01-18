@@ -51,12 +51,15 @@ const lineInfo = {
     kobe: { name: "神戸線", class: "kobe" }
 };
 
-// 現在時刻の表示
-function updateTime() {
+// 時刻入力欄に現在時刻を設定
+function setCurrentTime() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
-    document.getElementById('current-time').textContent = `${hours}:${minutes}`;
+    const timeInput = document.getElementById('time-input');
+    if (timeInput) {
+        timeInput.value = `${hours}:${minutes}`;
+    }
 }
 
 // 駅選択
@@ -84,8 +87,16 @@ function checkTrains() {
         return;
     }
 
-    const now = new Date();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    // 時刻入力欄から時刻を取得
+    const timeInput = document.getElementById('time-input');
+    const inputTime = timeInput.value;
+
+    if (!inputTime) {
+        alert('時刻を入力してください。');
+        return;
+    }
+
+    const currentMinutes = timeToMinutes(inputTime);
 
     const timetable = selectedStation === 'umeda'
         ? timetableData.umeda_to_juso
@@ -95,8 +106,8 @@ function checkTrains() {
         return timeToMinutes(train.time) >= currentMinutes;
     });
 
-    const nextThreeTrains = upcomingTrains.slice(0, 3);
-    displayResults(nextThreeTrains);
+    const nextFiveTrains = upcomingTrains.slice(0, 5);
+    displayResults(nextFiveTrains);
 }
 
 // 結果表示
@@ -130,8 +141,10 @@ function displayResults(trains) {
 // 初期化
 async function init() {
     await loadTimetable();
-    setInterval(updateTime, 1000);
-    updateTime();
+    setCurrentTime();
+
+    // 1分ごとに時刻入力欄を更新（オプション）
+    setInterval(setCurrentTime, 60000);
 }
 
 // ページ読み込み時に実行

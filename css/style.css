@@ -110,23 +110,52 @@ h1 {
     color: #7B0F1E;
 }
 
-.current-time {
+.time-input-section {
+    margin-bottom: 20px;
+}
+
+.time-label {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.time-input {
+    width: 100%;
     text-align: center;
     font-size: 32px;
     font-weight: bold;
     color: #7B0F1E;
-    margin-bottom: 20px;
     padding: 15px;
     background: #F5F5F5;
     border-radius: 10px;
     border: 2px solid #E8E8E8;
+    font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    transition: all 0.3s;
+}
+
+.time-input:focus {
+    outline: none;
+    border-color: #7B0F1E;
+    background: white;
 }
 
 @media (max-width: 480px) {
-    .current-time {
+    .time-input-section {
+        margin-bottom: 15px;
+    }
+
+    .time-label {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .time-input {
         font-size: 28px;
         padding: 12px;
-        margin-bottom: 15px;
     }
 }
 

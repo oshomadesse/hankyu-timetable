@@ -15,7 +15,7 @@ async function loadTimetable() {
         const lines = ['kyoto', 'kobe', 'takarazuka'];
 
         // juso_to_umeda のデータを読み込み（3路線分を並列で取得）
-        const jusoToUmedaPromises = lines.map(line =>
+        const jusoToumedaPromises = lines.map(line =>
             fetch(`./data/juso_to_umeda/${line}_${type}.json`)
                 .then(res => {
                     if (!res.ok) throw new Error(`Failed to load ${line}_${type}.json`);
@@ -24,20 +24,37 @@ async function loadTimetable() {
                 .then(data => data.juso_to_umeda)
         );
 
-        const jusoToUmedaArrays = await Promise.all(jusoToUmedaPromises);
-        const jusoToUmeda = jusoToUmedaArrays
+        const jusoToumedaArrays = await Promise.all(jusoToumedaPromises);
+        const jusoToumeda = jusoToumedaArrays
             .flat()
             .sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time));
 
-        // umeda_to_juso のデータ（将来的に追加予定、現在は空配列）
-        const umedaToJuso = [];
+        // umeda_to_juso のデータ（を読み込み（3路線分を並列で取得）
+        const umedaTojusoPromises = lines.map(line =>
+            fetch(`./data/umeda_to_juso/${line}_${type}.json`)
+                .then(res => {
+                    if (!res.ok) throw new Error(`Failed to load ${line}_${type}.json`);
+                    return res.json();
+                })
+                .then(data => data.umeda_to_juso)
+        );
+
+        const umedaTojusoArrays = await Promise.all(umedaTojusoPromises);
+        const umedaTojuso = umedaTojusoArrays
+            .flat()
+            .sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time));
 
         timetableData = {
-            juso_to_umeda: jusoToUmeda,
-            umeda_to_juso: umedaToJuso
+            juso_to_umeda: jusoToumeda,
+            umeda_to_juso: umedaTojuso
         };
 
         console.log(`時刻表データを読み込みました: ${type} (${jusoToUmeda.length}本)`);
+    } catch (error) {
+        console.error('時刻表データの読み込みに失敗しました:', error);
+        alert('時刻表データの読み込みに失敗しました。');
+
+        console.log(`時刻表データを読み込みました: ${type} (${umedaTojuso.length}本)`);
     } catch (error) {
         console.error('時刻表データの読み込みに失敗しました:', error);
         alert('時刻表データの読み込みに失敗しました。');

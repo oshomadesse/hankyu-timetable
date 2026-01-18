@@ -1,4 +1,5 @@
 let selectedStation = 'juso';
+let selectedStation = 'umeda';
 let timetableData = null;
 
 // 平日/土日祝の判定

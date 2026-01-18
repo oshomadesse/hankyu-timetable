@@ -206,10 +206,10 @@ function checkTrains() {
     const nextFiveTrains = upcomingTrains.slice(0, 5);
     displayResults(nextFiveTrains);
 
-    // 結果表示後、最下部まで自動スクロール
+    // 結果表示後、最下部10px上まで自動スクロール
     setTimeout(() => {
         window.scrollTo({
-            top: document.body.scrollHeight,
+            top: document.body.scrollHeight - 10,
             behavior: 'smooth'
         });
     }, 80);

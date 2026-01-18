@@ -295,3 +295,33 @@ h1 {
 .line-badge.kobe {
     background: #0068B7;
 }
+
+/* ===========================
+   iOS Safariの time input 崩れ対策
+   =========================== */
+
+.time-input {
+  display: block;     /* inlineの謎挙動を潰す */
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* iOS Safariだけに効くハック（他ブラウザにほぼ影響なし） */
+@supports (-webkit-touch-callout: none) {
+  .time-input {
+    font-size: 24px;        /* 32px→下げるのが決定打 */
+    padding: 12px 10px;     /* 横paddingを減らす */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* time入力の「中身部分」を中央寄せにする（iOSはこれが効く） */
+  input[type="time"]::-webkit-date-and-time-value {
+    text-align: center;
+  }
+
+  /* 右側の余計なUIで溢れることがあるので保険 */
+  input[type="time"]::-webkit-clear-button {
+    display: none;
+  }
+}

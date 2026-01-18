@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>阪急 梅田⇔十三 乗車案内</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🚃 阪急電車 乗車案内</h1>
+        <div class="subtitle">梅田 ⇔ 十三</div>
+
+        <div class="station-select">
+            <button class="station-btn selected" id="juso-btn" onclick="selectStation('juso')">
+                十三
+            </button>
+            <button class="station-btn" id="umeda-btn" onclick="selectStation('umeda')">
+                梅田
+            </button>
+        </div>
+
+        <div class="current-time" id="current-time">
+            --:--
+        </div>
+
+        <button class="check-btn" id="check-btn" onclick="checkTrains()">
+            この時刻で検索
+        </button>
+
+        <div class="results" id="results">
+        </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>

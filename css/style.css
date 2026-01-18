@@ -1,0 +1,280 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: linear-gradient(135deg, #7B0F1E 0%, #5A0B16 100%);
+    min-height: 100vh;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .container {
+        padding: 20px;
+        border-radius: 15px;
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #7B0F1E;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+}
+
+.station-select {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 480px) {
+    .station-select {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+.station-btn {
+    flex: 1;
+    padding: 20px;
+    border: 3px solid #ddd;
+    border-radius: 15px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+@media (max-width: 480px) {
+    .station-btn {
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+}
+
+.station-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.station-btn.selected {
+    border-color: #7B0F1E;
+    background: #FFF5F6;
+    color: #7B0F1E;
+}
+
+.current-time {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #7B0F1E;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    border: 2px solid #E8E8E8;
+}
+
+@media (max-width: 480px) {
+    .current-time {
+        font-size: 28px;
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+}
+
+.check-btn {
+    width: 100%;
+    padding: 18px;
+    background: #7B0F1E;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 25px;
+    transition: all 0.3s;
+}
+
+.check-btn:hover:not(:disabled) {
+    background: #5A0B16;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(123, 15, 30, 0.3);
+}
+
+.check-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.results {
+    display: none;
+}
+
+.results.show {
+    display: block;
+}
+
+.train-card {
+    background: white;
+    border-left: 6px solid #7B0F1E;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+@media (max-width: 480px) {
+    .train-card {
+        padding: 15px;
+        border-left-width: 5px;
+        margin-bottom: 12px;
+    }
+}
+
+.train-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 480px) {
+    .train-card:hover {
+        transform: translateX(3px);
+    }
+}
+
+.train-card.kyoto {
+    border-left-color: #00A040;
+    background: linear-gradient(to right, #F5FFF9 0%, white 10%);
+}
+
+.train-card.takarazuka {
+    border-left-color: #FF6600;
+    background: linear-gradient(to right, #FFF9F5 0%, white 10%);
+}
+
+.train-card.kobe {
+    border-left-color: #0068B7;
+    background: linear-gradient(to right, #F5FAFF 0%, white 10%);
+}
+
+.train-time {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 480px) {
+    .train-time {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+}
+
+.train-line {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 480px) {
+    .train-line {
+        font-size: 16px;
+    }
+}
+
+.train-card.kyoto .train-line {
+    color: #00A040;
+}
+
+.train-card.takarazuka .train-line {
+    color: #FF6600;
+}
+
+.train-card.kobe .train-line {
+    color: #0068B7;
+}
+
+.train-info {
+    font-size: 14px;
+    color: #666;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.line-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-right: 8px;
+}
+
+.line-badge.kyoto {
+    background: #00A040;
+}
+
+.line-badge.takarazuka {
+    background: #FF6600;
+}
+
+.line-badge.kobe {
+    background: #0068B7;
+}
